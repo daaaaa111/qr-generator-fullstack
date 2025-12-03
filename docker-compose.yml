@@ -6,9 +6,9 @@ services:
     image: postgres:15
     container_name: qr_postgres
     environment:
-      POSTGRES_USER: ${DB_USER}         # 👈 Đọc từ .env
-      POSTGRES_PASSWORD: ${DB_PASSWORD} # 👈 Đọc từ .env (Không ghi cứng da79...)
-      POSTGRES_DB: ${DB_NAME}           # 👈 Đọc từ .env
+      POSTGRES_USER: ${DB_USER}         
+      POSTGRES_PASSWORD: ${DB_PASSWORD} 
+      POSTGRES_DB: ${DB_NAME}           
     ports:
       - "${DB_PORT}:5432"
     volumes:
