@@ -28,7 +28,7 @@ function Navbar() {
                     <ul className="nav-menu">
                         <li className="nav-item">
                             <NavLink to="/" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")}>
-                                <PlusCircle size={16}/> Tạo EAN-13
+                                <PlusCircle size={16}/> Tạo Mã QR
                             </NavLink>
                         </li>
                         <li className="nav-item">
