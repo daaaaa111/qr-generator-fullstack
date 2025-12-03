@@ -1,0 +1,615 @@
+/* ========================================= */
+/* 1. CONTAINER & HEADER */
+/* ========================================= */
+.management-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #2c3e50;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f1f3f5;
+    padding: 8px 15px;
+    border-radius: 20px;
+    width: 320px;
+    border: 1px solid transparent;
+    transition: border 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: #4a90e2;
+    background: #fff;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    margin-left: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.clear-search-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* ========================================= */
+/* 2. TABS & TOOLBAR */
+/* ========================================= */
+.tabs-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: #4a90e2;
+    color: white;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+}
+
+.tab-btn:hover:not(.active) {
+    background: #e9ecef;
+}
+
+
+/* TOOLBAR CONTAINER */
+.sorting-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.toolbar-left,
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.toolbar-search-box {
+    /* Search box phụ trong toolbar nếu cần */
+    display: flex;
+    align-items: center;
+    background: #f3f4f6;
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 250px;
+}
+
+.toolbar-search-box input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    margin-left: 8px;
+}
+
+/* FILTER GROUP */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-dropdown {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.action-buttons-row {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+/* SORT GROUP */
+.sort-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toolbar-label {
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.sort-dropdown {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sort-toggle-btn {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* LAYOUT TOGGLE */
+.layout-toggle {
+    display: flex;
+    background: #f3f4f6;
+    border-radius: 6px;
+    padding: 3px;
+    margin-left: 15px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #666;
+    display: flex;
+}
+
+.icon-btn.active {
+    background: white;
+    color: #4a90e2;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* BUTTONS */
+.primary-btn {
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.primary-btn:hover {
+    background-color: #059669;
+}
+
+.outline-btn {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.outline-btn:hover {
+    border-color: #4a90e2;
+    color: #4a90e2;
+}
+
+.create-btn-toolbar {
+    background: linear-gradient(135deg, #4a90e2 0%, #2563eb 100%);
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+/* ========================================= */
+/* 3. GRID VIEW (LƯỚI THẺ) */
+/* ========================================= */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.grid-layout .data-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 220px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+}
+
+.grid-layout .data-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: #4a90e2;
+}
+
+.grid-layout .card-top-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+    background: #eef2f6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a90e2;
+}
+
+.code-badge {
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.grid-layout h3 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+}
+
+.meta-group {
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+/* Create New Card */
+.create-new-card {
+    border: 2px dashed #ccc !important;
+    background: #fcfcfc !important;
+    cursor: pointer !important;
+}
+
+.create-new-card:hover {
+    border-color: #4a90e2 !important;
+    background: #f0f8ff !important;
+}
+
+/* Grid Checkbox & Actions */
+.grid-layout .card-checkbox {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+}
+
+.grid-layout .action-buttons-group {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 5px;
+}
+
+/* ========================================= */
+/* 4. LIST VIEW (DẠNG BẢNG) - CHUẨN */
+/* ========================================= */
+.list-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* --- HEADER CHUNG --- */
+.list-header {
+    background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: 700;
+    color: #495057;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid #cbd5e1;
+    padding: 12px 20px;
+    align-items: center;
+}
+
+/* --- BATCHES LIST (7 CỘT) --- */
+/* Icon | ID | Tên | Người tạo | SL | Ngày | Update */
+.list-layout.batches-list .data-card,
+.list-header.batches-header {
+    display: grid;
+    grid-template-columns: 50px 70px 2fr 130px 80px 120px 120px;
+    gap: 15px;
+}
+
+/* --- ITEMS LIST (7 CỘT) --- */
+/* Check | ID | Tên | Mã | QR | Ngày | Action */
+.list-layout:not(.batches-list) .data-card,
+.list-header.items-header {
+    display: grid;
+    grid-template-columns: 40px 70px 2.5fr 1.5fr 60px 120px 60px;
+    gap: 15px;
+}
+
+/* DATA ROW STYLE */
+.list-layout .data-card {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 10px 20px;
+    margin: 0;
+    border-radius: 0;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.list-layout .data-card:hover {
+    background: #f8fafc;
+}
+
+.list-layout .data-card.selected {
+    background: #f0f9ff;
+}
+
+/* Cells */
+.list-layout .card-checkbox {
+    display: flex;
+    justify-content: center;
+}
+
+.batch-id-cell {
+    text-align: center;
+    font-weight: bold;
+    color: #d97706;
+    background: #fffbeb;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #fcd34d;
+    font-family: monospace;
+}
+
+.creator-cell {
+    font-size: 0.9rem;
+    color: #4a90e2;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.list-qr-preview {
+    display: flex;
+    justify-content: center;
+}
+
+.action-buttons-group-list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.card-body-wrapper {
+    display: contents;
+}
+
+/* Quan trọng để grid hoạt động */
+
+.card-info-section h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sub-text {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.card-code-section {
+    font-family: monospace;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: fit-content;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Sortable Header */
+.sortable-col {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    user-select: none;
+}
+
+.sortable-col:hover {
+    color: #4a90e2;
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+}
+
+/* Action Buttons */
+.action-btn,
+.delete-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: #eef2ff;
+    color: #4a90e2;
+    border-color: #4a90e2;
+}
+
+.delete-icon:hover {
+    background: #fff5f5;
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+/* ========================================= */
+/* 5. PAGINATION & EXTRAS */
+/* ========================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.page-info {
+    font-weight: 700;
+    color: #2c3e50;
+    background: #f8f9fa;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.loading-spinner,
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+
+.copy-toast {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+
+    /* Ẩn bớt cột trên mobile */
+    .list-layout.batches-list .data-card,
+    .list-header.batches-header {
+        grid-template-columns: 50px 60px 1fr 60px;
+        /* Icon, ID, Tên, SL */
+    }
+
+    .list-header.batches-header>div:nth-child(4),
+    .list-header.batches-header>div:nth-child(6),
+    .list-header.batches-header>div:nth-child(7),
+    .list-layout.batches-list .data-card>div:nth-child(4),
+    .list-layout.batches-list .data-card>div:nth-child(6),
+    .list-layout.batches-list .data-card>div:nth-child(7) {
+        display: none !important;
+    }
+
+    .list-layout:not(.batches-list) .data-card,
+    .list-header.items-header {
+        grid-template-columns: 40px 1fr 40px;
+        /* Check, Tên, Action */
+    }
+
+    /* Ẩn cột ID, Mã, QR, Ngày */
+    .list-header.items-header>div:nth-child(2),
+    .list-header.items-header>div:nth-child(4),
+    .list-header.items-header>div:nth-child(5),
+    .list-header.items-header>div:nth-child(6),
+    .batch-id-cell,
+    .card-code-section,
+    .list-qr-preview,
+    .list-date-col {
+        display: none !important;
+    }
+}

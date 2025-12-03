@@ -1,0 +1,1219 @@
+/* src/pages/VCardPage.css */
+
+/* --- CONTAINER & HEADER --- */
+/* src/pages/VCardPage.css */
+
+/* 1. Nới rộng khung chứa chính của trang */
+.vcard-page-container {
+    max-width: 1400px;
+    /* Tăng từ 1200px lên 1400px để có thêm không gian */
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* 2. Thiết lập dàn trang Flexbox (Quan trọng) */
+.vcard-editor-layout {
+    display: flex;
+    flex-direction: row;
+    /* Bắt buộc xếp theo hàng ngang trên PC */
+    align-items: flex-start;
+    /* Căn thẳng hàng bên trên */
+    gap: 40px;
+    /* Khoảng cách giữa 2 cột */
+    /* Lưu ý: Không dùng flex-wrap: wrap ở đây cho desktop */
+}
+
+/* 3. Cột Form (Bên trái) - Co giãn linh hoạt */
+.form-container.vcard-form {
+    flex: 1;
+    /* Chiếm toàn bộ không gian còn thừa */
+    min-width: 450px;
+    /* Đảm bảo form không bị ép quá nhỏ */
+    /* Các style trang trí khác giữ nguyên... */
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 4. Cột Preview (Bên phải) - Cố định kích thước (MẤU CHỐT) */
+.preview-container {
+    width: 360px;
+    /* Đặt chiều rộng cố định cho vùng chứa điện thoại */
+    flex-shrink: 0;
+    /* QUAN TRỌNG: Ra lệnh cho cột này KHÔNG ĐƯỢC co lại khi thiếu chỗ */
+    display: flex;
+    justify-content: center;
+}
+
+/* src/pages/VCardPage.css */
+
+.theme-selection-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.background-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bg-upload-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px dashed #d4af37;
+    border-radius: 8px;
+    color: #d4af37;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fffdf5;
+}
+
+.bg-upload-btn:hover {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(212, 175, 55, 0.2);
+}
+
+.bg-preview-small {
+    width: 60px;
+    height: 35px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.bg-preview-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.bg-preview-small:hover .remove-bg {
+    opacity: 1;
+}
+
+/* Thêm vào VCardPage.css */
+
+/* Grid chứa các nút thêm link */
+.available-links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.add-link-icon-btn {
+    background: white;
+    border: 1px solid #eee;
+    padding: 8px 16px;
+    border-radius: 50px;
+    /* Bo tròn như viên thuốc */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #444;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.add-link-icon-btn:hover {
+    background: #fff;
+    border-color: #d4af37;
+    /* Viền vàng Legend */
+    color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+}
+
+.add-link-icon-btn svg {
+    transition: transform 0.2s;
+}
+
+.add-link-icon-btn:hover svg {
+    transform: scale(1.1);
+}
+
+/* Input Group khi đã thêm link */
+.link-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    background: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: border-color 0.2s;
+}
+
+.link-input-group:focus-within {
+    border-color: #d4af37;
+    background: #fff;
+}
+
+.link-input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+}
+
+.link-input-group input {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 8px 0 !important;
+}
+
+.remove-link-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.remove-link-btn:hover {
+    color: #e74c3c;
+    /* Đỏ khi hover xóa */
+}
+
+/* --- RESPONSIVE: Xử lý khi màn hình nhỏ (Mobile/Tablet) --- */
+/* Khi màn hình nhỏ hơn 968px, chúng ta mới cho phép rớt dòng */
+@media (max-width: 968px) {
+    .vcard-editor-layout {
+        flex-direction: column;
+        /* Xếp chồng lên nhau: Form trên, Preview dưới */
+        gap: 30px;
+    }
+
+    /* Hoặc nếu bạn muốn Preview nằm trên Form thì dùng:
+    .vcard-editor-layout {
+        flex-direction: column-reverse; 
+    }
+    */
+
+    .form-container.vcard-form,
+    .preview-container {
+        width: 100%;
+        /* Chiếm full màn hình */
+        min-width: unset;
+        /* Bỏ giới hạn chiều rộng tối thiểu */
+    }
+
+    /* Trên mobile thì bỏ tính năng dính (sticky) của preview đi cho dễ cuộn */
+    .sticky-wrapper {
+        position: static;
+    }
+}
+
+.vcard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.vcard-header h1 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin: 0;
+    font-weight: 800;
+}
+
+/* --- TABS --- */
+.vcard-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.vcard-tab-btn {
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vcard-tab-btn.active {
+    background: #1a1a1a;
+    color: #d4af37;
+    border-color: #1a1a1a;
+}
+
+.vcard-tab-btn:hover:not(.active) {
+    background: #f0f0f0;
+}
+
+/* --- LAYOUT 2 CỘT --- */
+.vcard-layout {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 1. FORM (BÊN TRÁI) */
+.form-container.vcard-form {
+    flex: 1;
+    min-width: 400px;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #d4af37;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Theme Selector */
+.theme-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.theme-item {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #f0f0f0;
+    transition: 0.2s;
+}
+
+.theme-item.active {
+    border-color: #333;
+    transform: scale(1.1);
+}
+
+/* Avatar Upload */
+.avatar-upload-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar-upload-box img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+.upload-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Save Button */
+.save-vcard-btn {
+    width: 100%;
+    padding: 15px;
+    background: #d4af37;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+.save-vcard-btn:hover {
+    background: #c5a028;
+    transform: translateY(-2px);
+}
+
+/* --- 2. MOBILE PREVIEW (BÊN PHẢI) - GIỐNG HÌNH MẪU --- */
+.preview-container {
+    flex: 0 0 340px;
+    display: flex;
+    justify-content: center;
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 20px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sticky-wrapper h4 {
+    color: #888;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* Khung điện thoại */
+.mobile-mockup {
+    width: 320px;
+    height: 650px;
+    background: #151515;
+    /* Viền đen nhám */
+    border-radius: 45px;
+    padding: 12px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border: 4px solid #222;
+}
+
+.notch {
+    width: 120px;
+    height: 28px;
+    background: #000;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 16px 16px;
+    z-index: 20;
+}
+
+/* Màn hình bên trong */
+.screen {
+    width: 100%;
+    height: 100%;
+    background: #1e1e1e;
+    /* Mặc định nền tối */
+    border-radius: 35px;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    scrollbar-width: none;
+}
+
+.screen::-webkit-scrollbar {
+    width: 0;
+}
+
+/* --- GIAO DIỆN PROFILE TRONG ĐIỆN THOẠI --- */
+.profile-view {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+/* Header màu vàng/ảnh bìa */
+.profile-header {
+    height: 160px;
+    /* Header cao */
+    background-color: #d4af37;
+    /* Màu vàng mặc định */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 0;
+}
+
+/* Avatar tròn đè lên header */
+.card-avatar-preview {
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    padding: 4px;
+    background: inherit;
+    /* Viền avatar cùng màu header */
+}
+
+.card-avatar-preview img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    background: #fff;
+}
+
+/* Phần thân dưới */
+.card-body {
+    padding: 60px 20px 30px;
+    /* Padding top lớn để né avatar */
+    text-align: center;
+    flex: 1;
+}
+
+.preview-name {
+    margin: 5px 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: inherit;
+    /* Màu chữ theo theme */
+}
+
+.preview-job {
+    margin: 0 0 20px;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* Nút Lưu Danh Bạ (Pill Shape) */
+.preview-actions button {
+    background: transparent;
+    border: 1px solid;
+    /* Màu border theo theme */
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: default;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Danh sách liên hệ */
+.preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    /* Nền mờ cho dark mode */
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.preview-item .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    /* Icon màu trắng */
+}
+
+.preview-item .text {
+    overflow: hidden;
+}
+
+.preview-item .text small {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-bottom: 2px;
+}
+
+.preview-item .text span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+/* Social Section */
+.social-section {
+    margin-top: 10px;
+}
+
+.social-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.social-header-title {
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.social-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+.card-footer {
+    padding: 15px;
+    text-align: center;
+    font-size: 0.7rem;
+    opacity: 0.4;
+    margin-top: auto;
+}
+
+/* --- THEME COLORS (Quan trọng cho giống mẫu) --- */
+/* Legend: Nền đen, Header Vàng, Chữ Trắng */
+.theme-item[title="Legend Gold"] {
+    background-color: #d4af37;
+}
+
+/* Icon chọn */
+
+/* Ghi đè màu sắc khi active theme Legend */
+/* Bạn cần đảm bảo trong JS set themeId='legend' có cấu trúc: { color: '#d4af37', bg: '#1a1a1a', text: '#ffffff' } */
+
+/* Responsive Mobile Editor */
+@media (max-width: 900px) {
+    .vcard-layout {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .form-container.vcard-form {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .preview-container {
+        width: 100%;
+        position: static;
+        margin-bottom: 40px;
+    }
+}
+
+/* src/pages/VCardPage.css */
+
+/* 1. Tăng chiều rộng tối đa của trang để chứa đủ 2 cột */
+.vcard-page-container {
+    max-width: 1400px;
+    /* Tăng từ 1200px lên 1400px */
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* 2. Chỉnh lại Layout Flexbox */
+.vcard-editor-layout {
+    display: flex;
+    flex-direction: row;
+    /* Bắt buộc hàng ngang */
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    /* Giảm khoảng cách xuống chút cho đỡ chật */
+}
+
+/* 3. Cột Form (Trái) - Cho phép co giãn */
+.form-container.vcard-form {
+    flex: 1;
+    /* Chiếm toàn bộ khoảng trống còn lại */
+    min-width: 400px;
+    /* Chiều rộng tối thiểu */
+    /* Giữ nguyên các style trang trí khác... */
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 4. Cột Preview (Phải) - Cố định cứng kích thước */
+.preview-container {
+    width: 340px;
+    /* Đặt width cố định thay vì flex */
+    flex-shrink: 0;
+    /* QUAN TRỌNG: Không cho phép bị ép nhỏ lại */
+    display: flex;
+    justify-content: center;
+}
+
+
+/* --- CHỈNH SỬA: CĂN GIỮA AVATAR --- */
+.avatar-group-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Căn giữa Label và Box */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.avatar-upload-box {
+    display: flex;
+    flex-direction: column;
+    /* Xếp dọc: Ảnh trên, Nút dưới */
+    align-items: center;
+    /* Căn giữa theo trục dọc */
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.avatar-upload-box img {
+    width: 110px;
+    /* Tăng kích thước ảnh lên chút cho đẹp */
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #d4af37;
+    /* Viền Vàng Legend */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.upload-btn {
+    padding: 8px 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    background-color: white;
+    margin-left: 0;
+    /* Bỏ margin cũ */
+}
+
+.upload-btn:hover {
+    background: #f5f5f5;
+    color: #d4af37;
+    border-color: #d4af37;
+}
+
+/* 5. Responsive: Chỉ rớt dòng khi màn hình < 900px */
+@media (max-width: 900px) {
+    .vcard-editor-layout {
+        flex-direction: column-reverse;
+        /* Đảo ngược: Preview lên trên, Form xuống dưới */
+        align-items: center;
+    }
+
+    .form-container.vcard-form {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .preview-container {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    /* Khi mobile thì bỏ sticky để scroll tự nhiên */
+    .sticky-wrapper {
+        position: static;
+    }
+}
+
+/* ========================================= */
+/* --- MODAL CẮT ẢNH (CROPPER) --- */
+/* ========================================= */
+
+/* Lớp phủ mờ nền sau */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Nền tối mờ đậm hơn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Đảm bảo nằm trên cùng mọi thứ */
+    backdrop-filter: blur(5px);
+    /* Hiệu ứng làm mờ nền hiện đại */
+    padding: 20px;
+}
+
+/* Hộp modal chính */
+.modal-content.large {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    /* Bo góc tròn trịa */
+    width: 100%;
+    max-width: 650px;
+    /* Chiều rộng tối đa */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    animation: modalPopIn 0.3s ease-out;
+    /* Hiệu ứng hiện ra */
+}
+
+@keyframes modalPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Header modal (Tiêu đề + Nút đóng) */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    font-weight: 800;
+}
+
+/* Nút đóng (X) */
+.close-btn {
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: #ffdddd;
+    color: #d32f2f;
+    transform: rotate(90deg);
+}
+
+/* Khu vực chứa Cropper (Quan trọng nhất) */
+.cropper-container-new {
+    position: relative;
+    height: 450px;
+    /* Chiều cao vùng cắt */
+    width: 100%;
+    background: #000;
+    /* Nền tối để dễ nhìn ảnh */
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 2px solid #eee;
+}
+
+/* Khu vực điều khiển (Slider + Nút lưu) */
+.controls-container {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* Thanh trượt zoom */
+.controls-container input[type="range"] {
+    flex: 1;
+    /* Chiếm phần lớn không gian */
+    cursor: pointer;
+    height: 6px;
+    accent-color: #d4af37;
+    /* Màu thanh trượt (Chrome/Edge) */
+}
+
+/* Nút Cắt & Dùng */
+.save-btn-new {
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #d4af37, #c5a028);
+    color: black;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+    box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.5);
+}
+
+.save-btn-new:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px -10px rgba(212, 175, 55, 0.6);
+}
+
+.card-header {
+    height: 140px;
+    /* Chiều cao nền màu */
+    background-color: #d4af37;
+    /* Màu mặc định */
+    position: relative;
+    /* QUAN TRỌNG: Làm mốc tọa độ cho Avatar */
+    border-radius: 30px 30px 0 0;
+    /* Bo góc trên cho khớp màn hình */
+}
+
+/* Avatar căn giữa tuyệt đối */
+.card-avatar-preview {
+    position: absolute;
+    bottom: -50px;
+    /* Đẩy xuống dưới đáy header một nửa chiều cao ảnh */
+    left: 50%;
+    /* Đẩy sang 50% chiều rộng */
+    transform: translateX(-50%);
+    /* Kéo lại 50% kích thước chính nó -> Căn giữa chuẩn */
+
+    /* Trang trí viền */
+    padding: 4px;
+    background-color: inherit;
+    /* Lấy màu nền của header làm viền ngoài */
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.card-avatar-preview img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    /* Viền trắng tách biệt */
+    object-fit: cover;
+    background: #fff;
+    display: block;
+    /* Xóa khoảng trắng thừa của thẻ img */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Phần thân dưới */
+.card-body {
+    /* Tăng padding-top để tên không bị Avatar che mất */
+    padding: 60px 20px 20px 20px;
+    text-align: center;
+    flex: 1;
+    overflow-y: auto;
+    /* Cuộn nếu nội dung dài */
+    position: relative;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 600px) {
+    .modal-content.large {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .cropper-container-new {
+        height: 350px;
+        /* Giảm chiều cao trên mobile */
+    }
+
+    .controls-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .controls-container input[type="range"],
+    .save-btn-new {
+        width: 100%;
+    }
+
+    .save-btn-new {
+        padding: 15px;
+    }
+}
+
+/* ========================================= */
+/* CSS CHO KHUNG KẾT QUẢ QR (TRANG PUBLIC) */
+/* ========================================= */
+
+/* 1. Khung chứa chính */
+.qr-result-container {
+    width: 100%;
+    max-width: 375px;
+    /* Bằng chiều rộng chuẩn điện thoại */
+    padding: 35px 25px;
+    /* Tăng padding trên dưới chút cho thoáng */
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+    /* Bo tròn nhiều hơn chút */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    /* Bóng mềm mại hơn */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    /* Tăng khoảng cách giữa các phần tử bên trong */
+    border: 1px solid #f0f0f0;
+}
+
+.qr-result-container h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #2c3e50;
+}
+
+.qr-result-container p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* 2. Nút Lưu Danh Thiếp (Nút chính - Call to Action) */
+.save-profile-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+
+    /* Dùng Gradient thay vì màu trơn */
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    border: none;
+    border-radius: 12px;
+    /* Bo tròn hiện đại */
+    cursor: pointer;
+
+    /* Bỏ margin-bottom vì đã dùng gap của container */
+    margin-bottom: 0;
+
+    /* Hiệu ứng chuyển động và bóng */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    /* Bóng màu xanh */
+
+    /* Căn giữa nội dung nếu sau này thêm icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.save-profile-btn:hover {
+    background: linear-gradient(135deg, #35d379, #2ecc71);
+    transform: translateY(-3px);
+    /* Nổi lên nhẹ khi di chuột */
+    box-shadow: 0 6px 18px rgba(39, 174, 96, 0.4);
+}
+
+.save-profile-btn:disabled {
+    background: #bdc3c7;
+    box-shadow: none;
+    transform: none;
+    cursor: not-allowed;
+}
+
+/* 3. Hiển thị Link URL (Đóng khung lại cho đẹp) */
+.qr-result-container a {
+    font-size: 0.9rem;
+    color: #0d6efd;
+    font-weight: 500;
+    word-break: break-all;
+    text-decoration: none;
+
+    /* Style như một ô input read-only */
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.qr-result-container a:hover {
+    border-color: #0d6efd;
+    background-color: white;
+}
+
+/* src/pages/VCardPage.css */
+
+/* --- STYLE CHUNG CHO NÚT PHỤ (UPLOAD, PRINT, NAVIGATE) --- */
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    /* Nếu dùng thẻ a */
+}
+
+/* Hiệu ứng Hover mặc định */
+.upload-button:hover {
+    border-color: #d4af37;
+    color: #d4af37;
+    background-color: #fffdf5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+}
+
+/* --- BIẾN THỂ NÚT --- */
+
+/* 1. Nút Vàng (Primary - Dùng cho In ấn/Hành động chính) */
+.btn-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #b08d28 100%);
+    color: white !important;
+    border: none;
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, #e5c158 0%, #cba438 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* 2. Nút Đen (Dark - Dùng cho điều hướng về Admin) */
+.btn-dark {
+    background-color: #2c3e50;
+    color: white !important;
+    border: none;
+    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
+}
+
+.btn-dark:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(44, 62, 80, 0.4);
+}
+
+/* 3. Nút Outline (Dùng cho Sửa lại/Quay lại) */
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+}
+
+.btn-outline:hover {
+    background-color: #d4af37;
+    color: white;
+}
+
+/* Icon bên trong nút */
+.upload-button svg {
+    width: 18px;
+    height: 18px;
+}
