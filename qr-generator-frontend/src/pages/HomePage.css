@@ -366,7 +366,71 @@
         transform: translateY(0);
     }
 }
+/* NÚT SUBMIT (Xem Trước Mẫu) - PHIÊN BẢN PRO */
+.submit-btn {
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px; /* Tăng padding để nút to và dễ bấm hơn */
+    
+    /* Gradient Vàng Gold sang trọng của Legend */
+    background: linear-gradient(135deg, #d4af37 0%, #b08d28 100%);
+    
+    color: white;
+    border: none;
+    border-radius: 12px; /* Bo tròn mềm mại */
+    
+    font-size: 1.1rem;
+    font-weight: 800; /* Chữ đậm hơn */
+    text-transform: uppercase; /* Chữ in hoa mạnh mẽ */
+    letter-spacing: 1px; /* Khoảng cách chữ rộng thoáng */
+    
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Khoảng cách giữa icon và chữ */
+    
+    /* Hiệu ứng chuyển động mượt mà */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Bóng đổ 3D */
+    box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.5);
+}
 
+/* Hiệu ứng khi rê chuột vào (Hover) */
+.submit-btn:hover {
+    /* Đổi gradient sáng hơn chút */
+    background: linear-gradient(135deg, #e5c158 0%, #cba438 100%);
+    
+    /* Nút nổi lên */
+    transform: translateY(-4px) scale(1.02);
+    
+    /* Bóng đổ đậm hơn */
+    box-shadow: 0 15px 25px -5px rgba(212, 175, 55, 0.6);
+}
+
+/* Hiệu ứng khi bấm xuống (Active) */
+.submit-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 5px 10px -3px rgba(212, 175, 55, 0.4);
+}
+
+/* Trạng thái vô hiệu hóa (Disabled) - Khi đang loading */
+.submit-btn:disabled {
+    background: #e0e0e0; /* Màu xám */
+    color: #a0a0a0;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    pointer-events: none;
+}
+
+/* Thêm icon loading xoay xoay nếu muốn (Optional) */
+.submit-btn:disabled svg {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
 /* ========================================= */
 /* 4. CỘT PHẢI: PREVIEW & RESULTS */
 /* ========================================= */
