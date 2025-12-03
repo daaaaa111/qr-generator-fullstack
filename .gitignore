@@ -1,0 +1,29 @@
+# --- CHUNG (General) ---
+.DS_Store
+node_modules/
+/dist
+/build
+/out
+.idea/
+.vscode/
+*.log
+
+# --- BẢO MẬT (Quan trọng nhất) ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+frontend/.env
+
+# --- BACKEND (Node.js) ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+backend/node_modules/
+
+# --- FRONTEND (React/Vite) ---
+frontend/node_modules/
+frontend/build/
+frontend/dist/
